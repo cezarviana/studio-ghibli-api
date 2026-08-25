@@ -63,7 +63,9 @@ export const Home = () => {
       const response = await fetch(`${baseURL}/films`);
       const movieData: Movie[] = await response.json();
 
-      setMovies(movieData);
+      const firstTenMovies = [...movieData].sort((firstMovie, secondMovie) => firstMovie.title.localeCompare(secondMovie.title, "EN")).slice(0, 10)
+
+      setMovies(firstTenMovies);
 
       console.log(movieData);
     } catch (error) {
