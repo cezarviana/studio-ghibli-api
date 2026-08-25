@@ -1,0 +1,55 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import type { Movie } from "../Home";
+
+export const FilmDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const [film, setFilm] = useState<Movie | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    fetch(`https://ghibliapi.vercel.app/films/${id}`)
+      .then((response) => response.json())
+      .then((movie: Movie) => {
+        setFilm(movie);
+        console.log(movie);
+      })
+      .catch((error) => console.error(error));
+  }, [id]);
+
+  if (!film) {
+    return <p className="text-3xl text-white">Carregando...</p>;
+  }
+
+  return (
+    <section className="flex flex-col w-full items-center mb-10">
+      <h2 className="text-2xl font-bold mb-10 text-white">Film Details:</h2>
+
+      <div className="flex flex-col w-full justify-center items-center mb-8">
+        <img
+          src={film.image}
+          alt={film.original_title_romanised}
+          className="mb-2 w-60"
+        />
+        <div className="bg-gray-300/50 rounded-sm p-6">
+          <div className="flex flex-col justify-center items-center text-center gap-4">
+            <p className="text-center">{film.original_title}</p>
+            <p className="text-center">{film.original_title_romanised}</p>
+            <p className="text-center mb-8">{film.title}</p>
+          </div>
+          <div className="flex flex-col justify-center items-center text-center w-150 gap-4">
+            <p className="text-center">Description: {film.description}</p>
+            <p className="text-center">Director: {film.director}</p>
+            <p className="text-center">Producer: {film.producer}</p>
+            <p className="text-center">release date: {film.release_date}</p>
+            <p className="text-center">
+              running time: {film.running_time} min.
+            </p>
+            <p className="text-center">rate: {film.rt_score}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
