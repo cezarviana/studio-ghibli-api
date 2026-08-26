@@ -61,7 +61,7 @@ export const Home = () => {
   const getMovies = async () => {
     try {
       const response = await fetch(`${baseURL}/films`);
-      const movieData: Movie[] = await response.json();
+      const movieData: Movie[] = await response.json();R
 
       const firstTenMovies = [...movieData]
         .sort((firstMovie, secondMovie) =>
