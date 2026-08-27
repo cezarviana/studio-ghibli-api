@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Home } from "../pages/Home";
-import { Footer } from "../pages/Footer";
+import { Footer } from "../components/Footer";
 import { FilmDetail } from "../pages/FilmDetail";
 
 export const Router = () => {
