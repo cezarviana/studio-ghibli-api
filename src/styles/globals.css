@@ -1,15 +1,23 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica+SC&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 html,
 body,
 #root {
+  width: 100%;
   min-height: 100%;
   margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #5fa4ff, #abfe7b);
+  background: linear-gradient(to bottom, rgba(27, 160, 208, 1) 20%, rgba(133, 204, 50, 1) 100%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import type { Movie } from "../Home";
 
 export const FilmDetail = () => {
@@ -19,26 +19,26 @@ export const FilmDetail = () => {
   }, [id]);
 
   if (!film) {
-    return <p className="text-3xl text-white">Carregando...</p>;
+    return <p className="text-3xl text-white items-center justify-center">Loading...</p>;
   }
 
   return (
     <section className="flex flex-col w-full items-center mb-10">
-      <h2 className="text-2xl font-bold mb-10 text-white">Film Details:</h2>
+      <h2 className="text-2xl font-light mb-10 text-white">Film Details:</h2>
 
       <div className="flex flex-col w-full justify-center items-center mb-8">
         <img
           src={film.image}
           alt={film.original_title_romanised}
-          className="mb-2 w-60"
+          className="mb-2 w-60 mx-4"
         />
-        <div className="bg-gray-300/50 rounded-sm p-6">
+        <div className="bg-gray-300/50 rounded-sm p-6 mx-6">
           <div className="flex flex-col justify-center items-center text-center gap-4">
             <p className="text-center">{film.original_title}</p>
             <p className="text-center">{film.original_title_romanised}</p>
             <p className="text-center mb-8">{film.title}</p>
           </div>
-          <div className="flex flex-col justify-center items-center text-center w-150 gap-4">
+          <div className="flex flex-col justify-center items-center text-center max-w-150 gap-4">
             <p className="text-center">Description: {film.description}</p>
             <p className="text-center">Director: {film.director}</p>
             <p className="text-center">Producer: {film.producer}</p>
@@ -49,6 +49,12 @@ export const FilmDetail = () => {
             <p className="text-center">rate: {film.rt_score}</p>
           </div>
         </div>
+        <Link
+        to="/"
+        aria-label="back to home"
+        >
+          <p className="bg-gray-300/50 rounded-sm m-4 p-6 font-bold ">Back to Home</p>
+        </Link>
       </div>
     </section>
   );
