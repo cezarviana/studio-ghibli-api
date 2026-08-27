@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Movie } from "../Home";
+import loadingGif from "../../assets/catbus-loading.gif"
 
 export const FilmDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,7 +20,15 @@ export const FilmDetail = () => {
   }, [id]);
 
   if (!film) {
-    return <p className="flex text-3xl mb-20 text-white items-center justify-center">Loading...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center mb-20 text-white">
+        <p className="flex text-3xl mb-20">
+          Loading...
+        </p>
+        ;
+        <img src={loadingGif} alt="loading movie" className="flex items-center justify-center rounded-lg w-90 mb-4" />
+      </div>
+    );
   }
 
   return (
@@ -49,11 +58,10 @@ export const FilmDetail = () => {
             <p className="text-center">rate: {film.rt_score}</p>
           </div>
         </div>
-        <Link
-        to="/"
-        aria-label="back to home"
-        >
-          <p className="bg-gray-300/50 rounded-sm m-4 p-6 font-bold transition-transform ease-in-out duration-400 hover:scale-108 shadow-lg shadow-black">Back to Home</p>
+        <Link to="/" aria-label="back to home">
+          <p className="bg-gray-300/50 rounded-sm m-4 p-6 font-bold transition-transform ease-in-out duration-400 hover:scale-108 shadow-lg shadow-black">
+            Back to Home
+          </p>
         </Link>
       </div>
     </section>
