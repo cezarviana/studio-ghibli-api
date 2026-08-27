@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Home } from "../pages/Home";
+import { Footer } from "../pages/Footer";
 import { FilmDetail } from "../pages/FilmDetail";
 
 export const Router = () => {
@@ -9,6 +10,7 @@ export const Router = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/film/:id" element={<FilmDetail />} />
+        <Route path="/" element={<Footer />} />
       </Route>
     </Routes>
   );
