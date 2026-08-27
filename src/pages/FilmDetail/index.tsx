@@ -19,7 +19,7 @@ export const FilmDetail = () => {
   }, [id]);
 
   if (!film) {
-    return <p className="text-3xl text-white items-center justify-center">Loading...</p>;
+    return <p className="flex text-3xl mb-20 text-white items-center justify-center">Loading...</p>;
   }
 
   return (
