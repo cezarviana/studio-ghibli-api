@@ -30,9 +30,9 @@ export const FilmDetail = () => {
         <img
           src={film.image}
           alt={film.original_title_romanised}
-          className="mb-2 w-60 mx-4"
+          className="mb-4 w-60 mx-4 shadow-lg shadow-black"
         />
-        <div className="bg-gray-300/50 rounded-sm p-6 mx-6">
+        <div className="bg-gray-300/50 rounded-sm p-6 mx-6 shadow-lg shadow-black">
           <div className="flex flex-col justify-center items-center text-center gap-4">
             <p className="text-center">{film.original_title}</p>
             <p className="text-center">{film.original_title_romanised}</p>
@@ -53,7 +53,7 @@ export const FilmDetail = () => {
         to="/"
         aria-label="back to home"
         >
-          <p className="bg-gray-300/50 rounded-sm m-4 p-6 font-bold ">Back to Home</p>
+          <p className="bg-gray-300/50 rounded-sm m-4 p-6 font-bold transition-transform ease-in-out duration-400 hover:scale-108 shadow-lg shadow-black">Back to Home</p>
         </Link>
       </div>
     </section>

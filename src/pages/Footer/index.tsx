@@ -13,7 +13,7 @@ export const Footer = () => {
                 <img
                   src="../../src/assets/studio-shibli-logo-secondary.png"
                   alt="Studio Ghibli secondary logo"
-                  className="m-2 transition-transform ease-in-out duration-400 hover:scale-105"
+                  className="w-50 m-2 transition-transform ease-in-out duration-400 hover:scale-105"
                 />
               </a>
             </div>

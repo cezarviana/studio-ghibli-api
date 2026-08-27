@@ -83,7 +83,7 @@ export const Home = () => {
 
   return (
     <>
-      <main className="flex flex-wrap w-full justify-center items-center gap-10">
+      <main className="flex flex-wrap w-full justify-center items-center px-6 py-2 gap-10">
         {movies.map((movie) => (
           <Link to={`/film/${movie.id}`} key={movie.id}>
             <div className="flex flex-col w-60 justify-center items-center mb-8 transition-transform ease-in-out duration-400 hover:scale-115">
@@ -93,7 +93,7 @@ export const Home = () => {
                   alt={movie.original_title_romanised}
                   className="mb-2 shadow-lg shadow-black"
                 />
-                <div className="flex flex-col justify-center items-center text-center bg-gray-300/50 rounded-sm p-4">
+                <div className="flex flex-col justify-center items-center text-center bg-gray-300/50 rounded-sm p-4 shadow-lg shadow-black">
                   <p className="text-center">{movie.original_title}</p>
                   <p className="text-center">
                     {movie.original_title_romanised}
