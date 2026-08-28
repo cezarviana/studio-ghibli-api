@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Movie } from "../Home";
-import loadingGif from "../../assets/catbus-loading.gif"
+import loadingGif from "../../assets/catbus-loading.gif";
 
 export const FilmDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,11 +22,12 @@ export const FilmDetail = () => {
   if (!film) {
     return (
       <div className="flex flex-col items-center justify-center mb-20 text-white">
-        <p className="flex text-3xl mb-20">
-          Loading...
-        </p>
-        ;
-        <img src={loadingGif} alt="loading movie" className="flex items-center justify-center rounded-lg w-90 mb-4" />
+        <p className="flex text-3xl mb-20">Loading...</p>
+        <img
+          src={loadingGif}
+          alt="loading movie"
+          className="flex items-center justify-center rounded-lg w-90 mb-4"
+        />
       </div>
     );
   }

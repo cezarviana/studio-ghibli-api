@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../../styles/globals.css";
 import { Link } from "react-router-dom";
 import loadingGif from "../../assets/catbus-loading.gif";
 
@@ -84,17 +83,16 @@ export const Home = () => {
   }, []);
 
   if (isLoading) {
-      return (
-        <div className="flex flex-col items-center justify-center mb-20 text-white">
-          <p className="flex text-3xl mb-20">Loading...</p>
-          ;
-          <img
-            src={loadingGif}
-            alt="loading movie"
-            className="flex items-center justify-center rounded-lg w-90 mb-4"
-          />
-        </div>
-      );
+    return (
+      <div className="flex flex-col items-center justify-center mb-20 text-white">
+        <p className="flex text-3xl mb-20">Loading...</p>
+        <img
+          src={loadingGif}
+          alt="loading movie"
+          className="flex items-center justify-center rounded-lg w-90 mb-4"
+        />
+      </div>
+    );
   }
 
   return (
