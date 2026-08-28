@@ -1,6 +1,6 @@
 # 🎬 Studio Ghibli API
 
-*Leia isso em Português: [🇧🇷 Português :brazil:](README.pt-br.md)*
+*Leia isso em Português: [🇧🇷 Português](README.pt-br.md)*
 
 ## 📝 Project Description 
 
