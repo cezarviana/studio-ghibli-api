@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../styles/globals.css";
 import { Link } from "react-router-dom";
+import loadingGif from "../../assets/catbus-loading.gif";
 
 export interface Movie {
   id: number;
@@ -56,6 +57,7 @@ export interface Movie {
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const baseURL = "https://ghibliapi.vercel.app";
 
   const getMovies = async () => {
@@ -70,16 +72,30 @@ export const Home = () => {
         .slice(0, 10);
 
       setMovies(firstTenMovies);
-
-      console.log(movieData);
     } catch (error) {
       console.error("Erro ao buscar o filme8:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getMovies();
   }, []);
+
+  if (isLoading) {
+      return (
+        <div className="flex flex-col items-center justify-center mb-20 text-white">
+          <p className="flex text-3xl mb-20">Loading...</p>
+          ;
+          <img
+            src={loadingGif}
+            alt="loading movie"
+            className="flex items-center justify-center rounded-lg w-90 mb-4"
+          />
+        </div>
+      );
+  }
 
   return (
     <>
