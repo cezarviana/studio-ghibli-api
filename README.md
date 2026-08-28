@@ -1,6 +1,8 @@
 # 🎬 Studio Ghibli API
 
-## 📝 Project Description
+*Leia isso em Português: [🇧🇷 Português :brazil:](README.pt-br.md)*
+
+## 📝 Project Description 
 
 This is a React TypeScript project that consumes the **Studio Ghibli public API** to create an interactive web application. The project displays the **10 first Studio Ghibli films in alphabetical order** with a modern, responsive interface. Users can click on any film to view its complete details, including description, director, producer, release date, and Rotten Tomatoes score.
 
