@@ -1,8 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import loadingGif from "../../assets/catbus-loading.gif";
-import type { Movie } from "../../types/movies"
 
+export interface Movie {
+  id: number;
+  title: string;
+  original_title: string;
+  original_title_romanised: string;
+  image: string;
+  movie_banner: string;
+  description: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  running_time: number;
+  rt_score: number;
+  url: string
+}
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import type { Movie } from "../../types/movies";
+import type { Movie } from "../../types/movie";
 import loadingGif from "../../assets/catbus-loading.gif";
 
 export const FilmDetail = () => {
