@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Movie } from "../../types/movie";
 import { Loading } from "../../components/Loading/loading";
+import { getMovieById } from "../../services/movies";
 
 export const FilmDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -9,18 +10,21 @@ export const FilmDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+  if (!id) return;
 
-    fetch(`https://ghibliapi.vercel.app/films/${id}`)
-      .then((response) => response.json())
-      .then((movie: Movie) => {
-        setFilm(movie);
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id]);
+  const loadFilm = async () => {
+    try {
+      const movie = await getMovieById(id);
+      setFilm(movie);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  loadFilm();
+}, [id]);
 
   if (isLoading) {
     return <Loading isLoading={true} />;

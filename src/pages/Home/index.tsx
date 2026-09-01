@@ -2,33 +2,36 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/Loading/loading";
 import type { Movie } from "../../types/movie";
+import { getMovies } from "../../services/movies";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const response = await fetch("https://ghibliapi.vercel.app/films");
-        const movieData: Movie[] = await response.json();
 
-        const firstTenMovies = [...movieData]
-          .sort((firstMovie, secondMovie) =>
-            firstMovie.title.localeCompare(secondMovie.title, "EN"),
-          )
-          .slice(0, 10);
+  const loadMovies = async () => {
+    try {
+      const movieData = await getMovies();
 
-        setMovies(firstTenMovies);
-      } catch (error) {
-        console.error("Erro ao buscar os filmes:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      const firstTenMovies = [...movieData]
+        .sort((firstMovie, secondMovie) =>
+          firstMovie.title.localeCompare(secondMovie.title, "EN"),
+        )
+        .slice(0, 10);
 
-    getMovies();
-  }, []);
+      setMovies(firstTenMovies);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  loadMovies();
+}, []);
+
+
 
   return (
     <>
