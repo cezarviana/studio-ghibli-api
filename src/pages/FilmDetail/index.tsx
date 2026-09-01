@@ -10,28 +10,32 @@ export const FilmDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-  if (!id) return;
+    if (!id) return;
 
-  const loadFilm = async () => {
-    try {
-      const movie = await getMovieById(id);
-      setFilm(movie);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const loadFilm = async () => {
+      try {
+        const movie = await getMovieById(id);
+        setFilm(movie);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  loadFilm();
-}, [id]);
+    loadFilm();
+  }, [id]);
 
   if (isLoading) {
     return <Loading isLoading={true} />;
   }
 
   if (!film) {
-    return <p>Filme não encontrado.</p>;
+    return (
+      <div className="flex flex-col w-full justify-center items-center mb-8">
+        <p className="text-center text-white">Filme não encontrado.</p>
+      </div>
+    );
   }
 
   return (

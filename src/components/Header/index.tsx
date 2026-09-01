@@ -1,3 +1,4 @@
+import studioLogo from "../../assets/studio-ghibli.png";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
@@ -10,7 +11,7 @@ export const Header = () => {
           aria-label="back to home"
         >
           <img
-            src="../../src/assets/studio-ghibli.png"
+            src={studioLogo}
             alt="Studio Ghibli logo"
             className="w-70"
           />
