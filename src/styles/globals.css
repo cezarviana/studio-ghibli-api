@@ -21,3 +21,8 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
+main {
+  max-width: 1680px;
+  margin: auto;
+}
