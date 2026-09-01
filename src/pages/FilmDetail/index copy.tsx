@@ -6,7 +6,6 @@ import { Loading } from "../../components/Loading/loading";
 export const FilmDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [film, setFilm] = useState<Movie | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
@@ -14,20 +13,12 @@ export const FilmDetail = () => {
     fetch(`https://ghibliapi.vercel.app/films/${id}`)
       .then((response) => response.json())
       .then((movie: Movie) => {
-        setFilm(movie);
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setIsLoading(false);
-      });
+        setFilm(movie)})
+      .catch((error) => console.error(error));
   }, [id]);
 
-  if (isLoading) {
-    return <Loading isLoading={true} />;
-  }
-
   if (!film) {
-    return <p>Filme não encontrado.</p>;
+    return <Loading isLoading={true} />;
   }
 
   return (
