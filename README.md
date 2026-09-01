@@ -171,12 +171,17 @@ Follow the steps below to run the project on your machine:
    npm install
    ```
 
-3. **Start the development server:**
+3. **Install the React Router Dom:**
+   ```bash
+   npm i react-router-dom
+   ```
+
+4. **Start the development server:**
    ```bash
    npm run dev
    ```
 
-4. **Open in browser:**
+5. **Open in browser:**
    - The application will be available at `http://localhost:5173` (or the URL shown in terminal)
    - Open the URL in your web browser
 
