@@ -1,28 +1,38 @@
 # 🎬 Studio Ghibli API
 
-*Read this in English: [🇺🇸 English](README.md)*
+_Read this in English: [🇺🇸 English](README.md)_
 
 ## 📝 Descrição do Projeto
 
-Este é um projeto React com TypeScript que consome a **API pública do Studio Ghibli** para criar uma aplicação web interativa. O projeto exibe os **10 primeiros filmes do Studio Ghibli em ordem alfabética** com uma interface moderna e responsiva. Os usuários podem clicar em qualquer filme para visualizar seus detalhes completos, incluindo descrição, diretor, produtor, data de lançamento e pontuação do Rotten Tomatoes.
+Este projeto é uma aplicação em React + TypeScript que consome a API pública do **Studio Ghibli** para exibir um catálogo moderno e interativo de filmes. A aplicação mostra os 10 primeiros filmes em ordem alfabética e permite ao usuário visualizar os detalhes completos de cada um.
 
-Este projeto foi desenvolvido como um **desafio para praticar habilidades com React, TypeScript, Tailwind CSS, React Router e consumo de APIs**.
+O objetivo é praticar e aplicar conceitos como **componentes React**, **estado**, **roteamento**, **estilização com Tailwind**, **consumo de API** e **tipagem com TypeScript**.
+
+## 🎨 Imagens do projeto
+
+<div align="center">
+   <div align="center">
+   <img src="./src/assets/desktop.gif"  style="height: 300px; text-align: center;"> 
+   <br><br>
+   <img src="./src/assets/mobile.gif"  style="height: 300px; text-align: center;"> <br>
+   </div>
+</div>
 
 ## 🔎 Funcionalidades
 
-- **Design responsivo** para todos os dispositivos
-- **Consumo de API** usando a API do Ghibli (`https://ghibliapi.vercel.app/films`)
-- **10 filmes ordenados alfabeticamente** por título
-- **Página inicial** exibindo pôsteres e títulos dos filmes
-- **Página de detalhes** com informações completas do filme
-- **Animação de carregamento** com indicador GIF personalizado
-- **Roteamento do lado do cliente** usando React Router
-- **Totalmente tipado com TypeScript** para segurança de tipos
-- **Estilizado com Tailwind CSS** para UI moderna e limpa
-- **Link para voltar à home** a partir da página de detalhes
-- **Efeitos de hover** com transições de escala nos cartões de filmes
+- Interface responsiva para desktop e mobile
+- Busca de dados na API oficial do Ghibli
+- Ordenação alfabética dos filmes por título
+- Cartões de filmes na página inicial
+- Página dinâmica de detalhes para cada filme
+- Componente de carregamento reutilizável durante a busca dos dados
+- Funções de serviço reutilizáveis para listagem e detalhe dos filmes
+- Navegação com React Router usando parâmetros na URL
+- Estrutura tipada com TypeScript
+- Estilo com Tailwind CSS
+- Navegação de volta para a home na página de detalhes
 
-## 🛠️ Ferramentas e Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - **React:** Biblioteca para construção de componentes
 - **TypeScript:** Tipagem estática para JavaScript
@@ -34,119 +44,114 @@ Este projeto foi desenvolvido como um **desafio para praticar habilidades com Re
 
 ## 💡 Decisões do Projeto
 
-1. **Separação de Responsabilidades**
-   - Criados componentes separados: `Home`, `FilmDetail`, `Header` e `Layout`
-   - Cada componente tem uma única responsabilidade para facilitar manutenção e testes
+1. **Organização de componentes**
+   - Foram criados componentes dedicados para estrutura e reutilização, como `Header`, `Footer`, `Layout` e `Loading`
+   - Cada parte tem uma responsabilidade clara para facilitar manutenção
 
-2. **Gerenciamento de Estado**
-   - Utilizado hook `useState` para gerenciar filmes e estado de carregamento
-   - Implementado estado `isLoading` para lidar com a UI de carregamento durante chamadas à API
+2. **Gerenciamento de estado**
+   - O hook `useState` é utilizado para controlar os dados da lista e do detalhe
+   - O estado de carregamento é usado para exibir um indicador enquanto a API responde
 
 3. **Tratamento de Requisições à API**
    - Utilizado hook `useEffect` para buscar dados quando o componente é montado
    - Implementado tratamento de erros com blocos `try-catch`
    - Adicionado `.finally()` para garantir que o estado de carregamento sempre seja atualizado
+   - Funções reutilizáveis foram extraídas para `src/services/movies.ts`
+   - Isso evita repetir a lógica de `fetch` em mais de uma página
 
-4. **Interface TypeScript**
-   - Criada interface `Movie` para tipar respostas da API
-   - Garante consistência de dados e previne erros em tempo de execução
+4. **Reuso da lógica de API**
+   - `getMovies()` busca a listagem completa
+   - `getMovieById(id)` busca um filme específico pelo ID
+   - As duas funções são reaproveitadas nas páginas Home e FilmDetail
 
-5. **Estilização**
-   - Utilizadas classes utilitárias do Tailwind CSS para design responsivo
-   - Implementados cálculos customizados de gap e largura com `flex-wrap` para 5 filmes por linha
+5. **Segurança de tipos**
+   - Um tipo `Movie` define a estrutura da resposta da API
+   - Isso reduz erros em execução e melhora a produtividade no desenvolvimento
 
-6. **Estratégia de Roteamento**
-   - Utilizado hook `useParams` do React Router para lidar com IDs dinâmicos de filmes
-   - Implementado componente `Link` para navegação do lado do cliente
+6. **Roteamento**
+   - Rotas dinâmicas são tratadas com `useParams()`
+   - A navegação é feita com `Link` do React Router
 
 ## 📁 Estrutura do Projeto
 
-```
+```bash
 studio-ghibli-api/
-│
 ├── src/
 │   ├── assets/
 │   │   ├── catbus-loading.gif
-│   │   ├── favicon.png
 │   │   ├── studio-ghibli.png
-│   │   ├── studio-ghibli.svg
 │   │   └── studio-shibli-logo-secondary.png
 │   │
 │   ├── components/
+│   │   ├── Footer/
+│   │   │   └── index.tsx
 │   │   ├── Header/
-│   │   │   └── index.tsx          # Componente de cabeçalho com navegação
-│   │   └── Layout/
-│   │       └── index.tsx          # Componente de layout principal com Header e Outlet
+│   │   │   └── index.tsx
+│   │   ├── Layout/
+│   │   │   └── index.tsx
+│   │   └── Loading/
+│   │       └── loading.tsx
 │   │
 │   ├── pages/
-│   │   ├── Home/
-│   │   │   └── index.tsx          # Página de listagem de filmes
-│   │   └── FilmDetail/
-│   │       └── index.tsx          # Página de detalhes de um filme específico
+│   │   ├── FilmDetail/
+│   │   │   └── index.tsx
+│   │   └── Home/
+│   │       └── index.tsx
 │   │
 │   ├── routes/
-│   │   └── index.tsx              # Configuração de rotas com React Router
-│   │
+│   │   └── index.tsx
+│   ├── services/
+│   │   └── movies.ts
 │   ├── styles/
-│   │   └── globals.css            # Estilos globais e imports do Tailwind
-│   │
-│   ├── App.tsx                    # Componente principal da aplicação com setup do roteador
-│   └── main.tsx                   # Ponto de entrada de renderização do React DOM
+│   │   └── globals.css
+│   ├── types/
+│   │   └── movie.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
 │
-├── public/
-│   └── favicon.ico                # Favicon do website
-│
-├── index.html                     # Ponto de entrada HTML
-├── tsconfig.json                  # Configuração do TypeScript
-├── tsconfig.app.json              # Configuração TS específica da aplicação
-├── tsconfig.node.json             # Configuração TS da ferramenta de build
-├── vite.config.ts                 # Configuração do Vite
-├── package.json                   # Dependências do projeto e scripts
-└── README.md                       # Este arquivo
+├── index.html
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── README.md
+├── README.pt-br.md
+└── .gitignore
 ```
 
-### Detalhes da Organização das Pastas
+### Finalidade das pastas
 
-- **`src/assets/`** - Imagens, GIFs e outros recursos estáticos utilizados em toda a aplicação
-- **`src/components/`** - Componentes React reutilizáveis (Header, Layout)
-- **`src/pages/`** - Componentes de nível de página representando diferentes rotas
-- **`src/routes/`** - Configuração do React Router e definições de rotas
-- **`src/styles/`** - Configuração CSS global e estilos
+- `src/assets/` — imagens e mídias estáticas utilizadas no app
+- `src/components/` — blocos reutilizáveis da interface, como cabeçalho, rodapé, layout e loading
+- `src/pages/` — telas da aplicação, como Home e FilmDetail
+- `src/routes/` — configuração das rotas da aplicação
+- `src/services/` — lógica reutilizável de acesso à API
+- `src/styles/` — estilos globais da aplicação
+- `src/types/` — tipos e interfaces TypeScript
 
-## 💦 Desafios Enfrentados
+## 🎯 Fluxo principal da aplicação
 
-- **Compreender genéricos do TypeScript** para tipar o hook `useParams`
-- **Implementar renderização condicional** baseada no estado de carregamento
-- **Lidar com rotas dinâmicas** e passar IDs através de parâmetros de URL
-- **Layout CSS com flexbox** para exibir adequadamente em telas de vários tamanhos
-- **Responsividade de estilização** para visualizações mobile e desktop
-- **Utilizar Tailwind CSS** para construir um website responsivo e moderno
+- `Home` carrega a lista de filmes da API
+- a lista é ordenada alfabeticamente e limitada aos 10 primeiros
+- cada card leva para `/film/:id`
+- `FilmDetail` busca o filme selecionado pelo ID e exibe os detalhes
+- enquanto a requisição está em andamento, o componente `Loading` aparece na tela
 
-## 🔓 O Que Aprendi
+## 💭 Melhorias futuras
 
-- Como consumir APIs REST utilizando a Fetch API em React
-- Definições de interface TypeScript e segurança de tipos em componentes React
-- Utilizar hooks `useParams` e `useEffect` para busca de dados e roteamento
-- Padrões de renderização condicional em React
-- Design responsivo com Tailwind CSS e flexbox
-- React Router DOM para navegação do lado do cliente
-- Tratamento de erros e estados de carregamento em operações assíncronas
-- Composição de componentes e separação de responsabilidades
+- Adicionar busca e filtros
+- Adicionar opções de ordenação por ano ou nota
+- Implementar favoritos com `localStorage`
+- Adicionar animações entre páginas
+- Criar seções mais detalhadas sobre cada filme
+- Melhorar acessibilidade e SEO
+- Adicionar testes para componentes e fluxo de API
 
-## 💭 Possíveis Atualizações Futuras
+## 📌 Observação
 
-- ✅ Completar estrutura básica do projeto e roteamento
-- Adicionar funcionalidade de busca/filtro de filmes
-- Implementar opções de ordenação de filmes (por ano, avaliação, diretor)
-- Adicionar recurso de favoritos/marcadores usando localStorage
-- Criar componente de carrossel para filmes em destaque
-- Adicionar transições de animação entre páginas
-- Implementar alternância de tema claro/escuro
-- Adicionar internacionalização (Inglês/Português/Espanhol)
-- Criar seção detalhada de elenco e equipe
-- Adicionar análises de filmes ou avaliações de outras fontes
-- Otimizar imagens e implementar lazy loading
-- Adicionar testes unitários e de integração
+Este projeto é um exemplo prático de como combinar React, TypeScript, consumo de API e interface baseada em rotas em uma aplicação frontend simples e completa.
 
 ## 🚀 Como Executar o Projeto
 
@@ -161,22 +166,26 @@ Siga os passos abaixo para executar o projeto em sua máquina:
 ### Passos de Instalação
 
 1. **Clonar o repositório:**
+
    ```bash
    git clone https://github.com/cezarviana/studio-ghibli-api.git
    cd studio-ghibli-api
    ```
 
 2. **Instalar dependências:**
+
    ```bash
    npm install
    ```
 
-3. **Instalando o React Router Dom:**
+3. **Instala o React-Router-Dom:**
+
    ```bash
-   npm i react-router-dom
+   npm run dev
    ```
 
 4. **Iniciar o servidor de desenvolvimento:**
+
    ```bash
    npm run dev
    ```

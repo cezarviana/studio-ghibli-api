@@ -2,192 +2,197 @@
 
 *Leia isso em Português: [🇧🇷 Português](README.pt-br.md)*
 
-## 📝 Project Description 
+## 📝 Project Description
 
-This is a React TypeScript project that consumes the **Studio Ghibli public API** to create an interactive web application. The project displays the **10 first Studio Ghibli films in alphabetical order** with a modern, responsive interface. Users can click on any film to view its complete details, including description, director, producer, release date, and Rotten Tomatoes score.
+This project is a React + TypeScript application that consumes the public **Studio Ghibli API** to display a modern and interactive catalog of films. The app shows the first 10 films in alphabetical order and allows the user to view the complete details of each one.
 
-This project was developed as a **challenge to practice React, TypeScript, Tailwind CSS, React Router, and API consumption skills**.
+The goal is to practice and apply concepts such as **React components**, **state management**, **routing**, **Tailwind styling**, **API integration**, and **TypeScript typing**.
+
+## 🎨 Project Visual
+
+<div align="center">
+   <div align="center">
+   <img src="./src/assets/desktop.gif"  style="height: 300px; text-align: center;"> 
+   <br><br>
+   <img src="./src/assets/mobile.gif"  style="height: 300px; text-align: center;"> <br>
+   </div>
+</div>
 
 ## 🔎 Features
 
-- **Responsive design** for all devices
-- **API consumption** using the Ghibli API (`https://ghibliapi.vercel.app/films`)
-- **10 films sorted alphabetically** by title
-- **Home page** displaying film posters and titles
-- **Detail page** with complete film information
-- **Loading animation** with custom GIF indicator
-- **Client-side routing** using React Router
-- **Fully typed with TypeScript** for type safety
-- **Styled with Tailwind CSS** for modern, clean UI
-- **Link back to home** from detail page
-- **Hover effects** with scale transitions on film cards
+- Responsive interface for desktop and mobile screens
+- Fetching data from the official Ghibli API
+- Alphabetical film ordering by title
+- Film cards on the home page
+- Dynamic detail page for each movie
+- Reusable loading component while data is being fetched
+- Reusable API service functions for list and detail requests
+- React Router navigation using URL params
+- Type-safe data structure with TypeScript
+- Tailwind CSS styling for modern UI
+- Back-to-home navigation from the detail page
 
-## 🛠️ Tools & Technologies Used
+## 🛠️ Technologies Used
 
-- **React:** UI library for building components
-- **TypeScript:** Static typing for JavaScript
-- **Vite:** Build tool and development server
-- **React Router DOM:** Client-side navigation
-- **Tailwind CSS:** Utility-first CSS framework
-- **Fetch API:** HTTP requests to consume the API
-- **Git:** Version control
+- React
+- TypeScript
+- Vite
+- React Router DOM
+- Tailwind CSS
+- Fetch API
+- Git
 
 ## 💡 Project Decisions
 
-1. **Separation of Concerns**
-   - Created separate components: `Home`, `FilmDetail`, `Header`, and `Layout`
-   - Each component has a single responsibility for easier maintenance and testing
+1. **Component organization**
+   - Created dedicated components for structure and reuse, such as `Header`, `Footer`, `Layout`, and `Loading`
+   - Each section has a clear responsibility for easier maintenance
 
-2. **State Management**
-   - Used `useState` hook for managing films and loading state
-   - Implemented `isLoading` state to handle loading UI during API calls
+2. **State management**
+   - `useState` is used to control list and detail data
+   - Loading state is used to display a loading indicator during API requests
 
-3. **API Request Handling**
-   - Used `useEffect` hook to fetch data when component mounts
-   - Implemented error handling with `try-catch` blocks
-   - Added `.finally()` to ensure loading state is always updated
+3. **Service layer**
+   - Reusable functions were extracted to `src/services/movies.ts`
+   - This avoids repeating `fetch` logic in multiple pages
 
-4. **TypeScript Interface**
-   - Created a `Movie` interface to type API responses
-   - Ensures data consistency and prevents runtime errors
+4. **API logic reuse**
+   - `getMovies()` fetches the catalog
+   - `getMovieById(id)` fetches a single movie by ID
+   - Both functions are reused in the Home and FilmDetail pages
 
-5. **Styling**
-   - Used Tailwind CSS utility classes for responsive design
-   - Implemented custom gap and width calculations with `flex-wrap` for 5 films per row
+5. **Type safety**
+   - A `Movie` type is used to define the structure of the API response
+   - This reduces runtime bugs and improves development safety
 
-6. **Routing Strategy**
-   - Used React Router's `useParams` hook to handle dynamic film IDs
-   - Implemented `Link` component for client-side navigation
+6. **Routing**
+   - Dynamic routes are handled with `useParams()`
+   - Navigation is done with `Link` from React Router
 
 ## 📁 Project Structure
 
-```
+```bash
 studio-ghibli-api/
-│
 ├── src/
 │   ├── assets/
 │   │   ├── catbus-loading.gif
-│   │   ├── favicon.png
 │   │   ├── studio-ghibli.png
-│   │   ├── studio-ghibli.svg
 │   │   └── studio-shibli-logo-secondary.png
 │   │
 │   ├── components/
+│   │   ├── Footer/
+│   │   │   └── index.tsx
 │   │   ├── Header/
-│   │   │   └── index.tsx          # Header component with navigation
-│   │   └── Layout/
-│   │       └── index.tsx          # Main layout wrapper with Header and Outlet
+│   │   │   └── index.tsx
+│   │   ├── Layout/
+│   │   │   └── index.tsx
+│   │   └── Loading/
+│   │       └── loading.tsx
 │   │
 │   ├── pages/
-│   │   ├── Home/
-│   │   │   └── index.tsx          # Film listing page
-│   │   └── FilmDetail/
-│   │       └── index.tsx          # Individual film details page
+│   │   ├── FilmDetail/
+│   │   │   └── index.tsx
+│   │   └── Home/
+│   │       └── index.tsx
 │   │
 │   ├── routes/
-│   │   └── index.tsx              # Route configuration with React Router
-│   │
+│   │   └── index.tsx
+│   ├── services/
+│   │   └── movies.ts
 │   ├── styles/
-│   │   └── globals.css            # Global styles and Tailwind imports
-│   │
-│   ├── App.tsx                    # Main app component with router setup
-│   └── main.tsx                   # React DOM render entry point
+│   │   └── globals.css
+│   ├── types/
+│   │   └── movie.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
 │
-├── public/
-│   └── favicon.ico                # Website favicon
-│
-├── index.html                     # HTML entry point
-├── tsconfig.json                  # TypeScript configuration
-├── tsconfig.app.json              # App-specific TS config
-├── tsconfig.node.json             # Build tool TS config
-├── vite.config.ts                 # Vite configuration
-├── package.json                   # Project dependencies and scripts
-└── README.md                       # This file
+├── index.html
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── README.md
+├── README.pt-br.md
+└── .gitignore
 ```
 
-### Folder Organization Details
+### Folder purpose
 
-- **`src/assets/`** - Images, GIFs, and other static resources used throughout the application
-- **`src/components/`** - Reusable React components (Header, Layout)
-- **`src/pages/`** - Page-level components representing different routes
-- **`src/routes/`** - React Router configuration and route definitions
-- **`src/styles/`** - Global CSS and styling configuration
+- `src/assets/` — images and static media used in the app
+- `src/components/` — reusable interface pieces such as header, footer, layout, and loading
+- `src/pages/` — page screens such as Home and FilmDetail
+- `src/routes/` — route configuration
+- `src/services/` — reusable API request logic
+- `src/styles/` — global styling
+- `src/types/` — TypeScript interfaces and types
 
-## 💦 Challenges Faced
+## 🎯 Main flow of the app
 
-- **Understanding TypeScript generics** for typing the `useParams` hook
-- **Implementing conditional rendering** based on loading state: the first 10 movies in alphabetical order
-- **Handling dynamic routes** and passing IDs through URL parameters
-- **CSS layout flex** to display using flex on screens of various sizes
-- **Styling responsiveness** for mobile and desktop views
-- **Using Tailwind CSS** using Tailwind CSS framework to build a responsive and modern website
+- `Home` loads the list of films from the API
+- the list is sorted alphabetically and limited to the first 10
+- each card links to `/film/:id`
+- `FilmDetail` fetches the selected movie by ID and shows the details
+- while loading, the `Loading` component appears on screen
 
-## 🔓 What I Learned
+## 💭 Future improvements
 
-- How to consume REST APIs using the Fetch API in React
-- TypeScript interface definitions and type safety in React components
-- Using `useParams` and `useEffect` hooks for data fetching and routing
-- Conditional rendering patterns in React
-- Responsive design with Tailwind CSS and flexbox
-- React Router DOM for client-side navigation
-- Error handling and loading states in async operations
-- Component composition and separation of concerns
+- Add search and filters
+- Add sorting options by year or score
+- Add favorites feature using localStorage
+- Add animations between pages
+- Add more detailed movie sections
+- Improve accessibility and SEO
+- Add tests for components and API flow
 
-## 💭 Possible Future Updates
+## 📌 Notes
 
-- ✅ Complete basic project structure and routing
-- Add film search/filter functionality
-- Implement film sorting options (by year, rating, director)
-- Add a favorites/bookmark feature using localStorage
-- Create a carousel component for featured films
-- Add animation transitions between pages
-- Implement dark/light theme toggle
-- Add internationalization (English/Portuguese/Spanish)
-- Create a detailed cast and crew section
-- Add film reviews or ratings from other sources
-- Optimize images and implement lazy loading
-- Add unit and integration tests
+This project is a practical example of how to combine React, TypeScript, API consumption, and route-based UI into a small but complete frontend app.
 
-## 🚀 How to Run the Project
-
-Follow the steps below to run the project on your machine:
+## 🚀 How to run the project
 
 ### Prerequisites
 
-- **Node.js** (version 14 or higher)
-- **npm** or **yarn** package manager
-- **Git** for cloning the repository
+- Node.js 18+
+- npm
 
-### Installation Steps
+### Installation
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/cezarviana/studio-ghibli-api.git
-   cd studio-ghibli-api
-   ```
+
+```bash
+git clone https://github.com/cezarviana/studio-ghibli-api.git
+cd studio-ghibli-api
+```
 
 2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
 
-3. **Install the React Router Dom:**
-   ```bash
-   npm i react-router-dom
-   ```
+```bash
+npm install
+```
 
-4. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+3. **Install the React-Router-Dom:**
 
-5. **Open in browser:**
-   - The application will be available at `http://localhost:5173` (or the URL shown in terminal)
-   - Open the URL in your web browser
+```bash
+npm i react-router-dom
+```
 
-### Available Scripts
+4. **Start the dev server:**
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint (if configured)
+```bash
+npm run dev
+```
+
+5. **Open the project in the browser at the URL shown in the terminal, usually:**
+
+```bash
+http://localhost:5173
+```
+
+### Available scripts
+
+- `npm run dev` — starts the local development server
+- `npm run build` — builds the production version
+- `npm run preview` — previews the production build locally
+- `npm run lint` — executes lint checks
