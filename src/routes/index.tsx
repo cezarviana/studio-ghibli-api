@@ -7,10 +7,9 @@ import { FilmDetail } from "../pages/FilmDetail";
 export const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="film/:id" element={<FilmDetail />} />
-        {/* <Route path="/" element={<Footer />} /> */}
       </Route>
     </Routes>
   );
