@@ -7,7 +7,7 @@ import { FilmDetail } from "../pages/FilmDetail";
 export const Router = () => {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="film/:id" element={<FilmDetail />} />
       </Route>
