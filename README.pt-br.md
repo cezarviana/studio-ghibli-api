@@ -8,6 +8,8 @@ Este projeto é uma aplicação em React + TypeScript que consome a API pública
 
 O objetivo é praticar e aplicar conceitos como **componentes React**, **estado**, **roteamento**, **estilização com Tailwind**, **consumo de API** e **tipagem com TypeScript**.
 
+Acesse o site aqui: [Studio Ghibli API](https://cezarviana.github.io/studio-ghibli-api)
+
 ## 🎨 Imagens do projeto
 
 <div align="center">

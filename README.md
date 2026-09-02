@@ -8,6 +8,8 @@ This project is a React + TypeScript application that consumes the public **Stud
 
 The goal is to practice and apply concepts such as **React components**, **state management**, **routing**, **Tailwind styling**, **API integration**, and **TypeScript typing**.
 
+Access the website here: [Studio Ghibli API](https://cezarviana.github.io/studio-ghibli-api)
+ 
 ## 🎨 Project Visual
 
 <div align="center">
